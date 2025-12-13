@@ -15,7 +15,7 @@ class SignupCubit extends Cubit<signupState> {
     required String fullName,
     required String email,
     required String password,
-    // required String confirmPassword,
+ 
   }) async {
     emit(signupLoading());
 
@@ -23,7 +23,7 @@ class SignupCubit extends Cubit<signupState> {
       FullName: fullName,
       Email: email,
       password: password,
-      // ConfirmPassword: confirmPassword,
+   
     );
 
     response.fold(

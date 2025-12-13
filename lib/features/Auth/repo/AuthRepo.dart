@@ -7,7 +7,6 @@ abstract class AuthRepo {
   Future<Either<Failures, Map<String, dynamic>>> fetchdatasignup({
     required String FullName,
     required dynamic password,
-    // required dynamic ConfirmPassword,
     required String Email,
   });
   Future<Either<Failures, Map<String, dynamic>>> fetchdataotp({

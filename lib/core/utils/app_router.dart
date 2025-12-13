@@ -2,6 +2,7 @@
 import 'package:flutter_application_12/features/AcountInfo/model/AcountInfoModel.dart';
 import 'package:flutter_application_12/features/AcountInfo/view/AcounteINfopage.dart';
 import 'package:flutter_application_12/features/Auth/view/OtpScreen.dart';
+
 import 'package:flutter_application_12/features/Auth/view/SignUpScreen.dart';
 import 'package:flutter_application_12/features/Auth/view/SucssesOtp.dart';
 import 'package:flutter_application_12/features/Auth/view/loginscreen.dart';
@@ -18,7 +19,7 @@ static const SucessOtppage='/SucessOtppage';
   static final router = GoRouter(
     initialLocation: '/',
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const SuccessView()),
+      GoRoute(path: '/', builder: (context, state) => const SignUpscreen()),
          
       GoRoute(
         path: '/account-info',
@@ -30,6 +31,7 @@ static const SucessOtppage='/SucessOtppage';
   GoRoute(path: '/Loginpage', builder: (context, state) => const loginscreen()),
   GoRoute(path: '/signuppage', builder: (context, state) => const SignUpscreen()),
     GoRoute(path: '/SucessOtppage', builder: (context, state) => const SuccessView()),
+      GoRoute(path: '/Otppage', builder: (context, state) => const OTPscreen()),
     ],
   );
 }

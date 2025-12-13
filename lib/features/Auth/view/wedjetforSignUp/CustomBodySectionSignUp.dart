@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_12/core/Validation.dart';
 import 'package:flutter_application_12/core/utils/app_router.dart';
 import 'package:flutter_application_12/core/utils/colors_theme.dart';
 import 'package:flutter_application_12/core/utils/style.dart';
@@ -21,13 +22,13 @@ class BodySectionSignup extends StatefulWidget {
 
 class _BodySectionSignupState extends State<BodySectionSignup> {
   bool _passwordVisible = false;
-  // bool _confirmPasswordVisible = false;
+
 
   final _formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  // final confirmPasswordController = TextEditingController();
+
 
   @override
   void dispose() {
@@ -35,7 +36,7 @@ class _BodySectionSignupState extends State<BodySectionSignup> {
     nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
-    // confirmPasswordController.dispose();
+
     super.dispose();
   }
 
@@ -52,7 +53,7 @@ class _BodySectionSignupState extends State<BodySectionSignup> {
 
             AppTextField(
               controller: nameController,
-              // validator: validateUsername,
+               validator: validateUsername,
               hint: 'Your Full Name',
               background: Colors.white,
               keyboardType: TextInputType.emailAddress,
@@ -66,7 +67,7 @@ class _BodySectionSignupState extends State<BodySectionSignup> {
             AppTextField(
               keyboardType: TextInputType.emailAddress,
               controller: emailController,
-              // validator: validateEmail,
+               validator: validateEmail,
               hint: 'Email',
               background: Colors.white,
 
@@ -79,7 +80,7 @@ class _BodySectionSignupState extends State<BodySectionSignup> {
 
             AppTextField(
               controller: passwordController,
-              // validator: validatePassword,
+               validator: validatePassword,
               hint: 'Password',
               background: Colors.white,
               keyboardType: TextInputType.emailAddress,
@@ -97,35 +98,14 @@ class _BodySectionSignupState extends State<BodySectionSignup> {
                 },
               ),
             ),
-          
-            // AppTextField(
-            //   // controller: confirmPasswordController,
-            //   validator: (value) =>
-            //       validateConfirmPassword(value, passwordController.text),
-            //   hint: 'تأكيد كلمة السر ',
-            //   background: Colors.white,
-            //   keyboardType: TextInputType.emailAddress,
-            //   obscure: !_confirmPasswordVisible,
-            //   prefix: const Icon(
-            //     Icons.lock_outline_rounded,
-            //     color: Color.fromARGB(255, 13, 12, 12),
-            //   ),
-            //   suffix: PasswordVisibilityIcon(
-            //     visible: _confirmPasswordVisible,
-            //     onPressed: () {
-            //       setState(() {
-            //         _confirmPasswordVisible = !_confirmPasswordVisible;
-            //       });
-            //     },
-            //   ),
-            // ),
+
 
             const SizedBox(height: 40),
             BlocListener<SignupCubit, signupState>(
               listener: (context, state) {
-                // if (state is signupSuccess) {
-                //   context.go(AppRouter.kOTPView);
-                // }
+                if (state is signupSuccess) {
+                  context.go(AppRouter.Otppage);
+                }
                 if (state is signupFailure) {
                   ScaffoldMessenger.of(
                     context,
@@ -140,7 +120,7 @@ class _BodySectionSignupState extends State<BodySectionSignup> {
                       fullName: nameController.text.trim(),
                       email: emailController.text.trim(),
                       password: passwordController.text.trim(),
-                      // confirmPassword: confirmPasswordController.text.trim(),
+               
                     );
                   }
                 },

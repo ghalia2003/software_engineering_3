@@ -20,17 +20,26 @@ class AuthRepoImpl implements AuthRepo {
     required String Email,
   }) async {
     try {
-      final data = await ApiService.post(
-        endPoint: 'register',
-        data: {
-          'FullName': FullName,
-          'password': password,
-         
-          'Email': Email,
-        },
+      final formData = FormData.fromMap({
+  'Username': FullName,
+  'Password': password,
+  'Email': Email,
+});
+      final res = await ApiService.post(
+        endPoint: 'Auth/register',
+        data: formData
       );
-
-      return right(data);
+      
+print('📥 Server response: $res');
+    if (res['success'] == true) {
+      // رجعي الـ data الحقيقي من السيرفر فقط
+      return right(Map<String, dynamic>.from(res['data'] ?? {}));
+    } else {
+      // رجعي الخطأ كـ Failure
+      return left(ServerFaliure(
+        errorMessage: res['error']?.toString() ?? 'حدث خطأ',
+      ));
+    }
     } on DioException catch (e) {
       return left(ServerFaliure.fromDioException(e));
     } catch (e) {

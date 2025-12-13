@@ -16,7 +16,7 @@ class ApiService {
             receiveTimeout: const Duration(seconds: 10),
             sendTimeout: const Duration(seconds: 10),
             contentType: 'application/json',
-            headers: {'Content-Type': 'application/json'},
+      
           ),
         )
         ..httpClientAdapter = IOHttpClientAdapter(
@@ -79,6 +79,7 @@ class ApiService {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         return {'success': true, 'data': response.data};
+        
       } else {
         return {
           'success': false,
