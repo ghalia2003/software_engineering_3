@@ -21,6 +21,7 @@ class OtpCubit extends Cubit<OtpcubitState> {
 
     response.fold(
       (failure) {
+          print('............................................................: $response');
         print('❌ OTP Failure: ${failure.errorMessage}');
         emit(otpFailure(failure.errorMessage));
       },

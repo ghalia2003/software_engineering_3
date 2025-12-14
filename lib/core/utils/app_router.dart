@@ -19,7 +19,7 @@ static const SucessOtppage='/SucessOtppage';
   static final router = GoRouter(
     initialLocation: '/',
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const SignUpscreen()),
+      GoRoute(path: '/', builder: (context, state) => const OTPscreen()),
          
       GoRoute(
         path: '/account-info',

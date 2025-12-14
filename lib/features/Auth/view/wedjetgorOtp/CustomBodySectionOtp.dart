@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_12/core/Validation.dart';
 import 'package:flutter_application_12/core/utils/app_router.dart';
 import 'package:flutter_application_12/core/utils/colors_theme.dart';
 import 'package:flutter_application_12/core/wedjet/CustomButtom.dart';
@@ -43,7 +44,7 @@ class _BodySectionOtpState extends State<BodySectionOtp> {
                 child: AppTextField(
                   keyboardType: TextInputType.emailAddress,
                   controller: emailController,
-                  // validator: validateEmail,
+                   validator: validateEmail,
                   hint: 'Email',
                   background: Colors.white,
 
@@ -104,8 +105,15 @@ class _BodySectionOtpState extends State<BodySectionOtp> {
                     child: AppButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                            if (_otpCode == null || _otpCode!.trim().isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("The OtpCode field is required.")),
+    );
+    return;
+  }
+
                           context.read<OtpCubit>().fetchdataotp(
-                            code: _otpCode ?? "",
+                            code: _otpCode!,
                             email: emailController.text.trim(),
                           );
                         }
