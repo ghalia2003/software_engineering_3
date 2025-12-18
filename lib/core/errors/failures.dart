@@ -45,7 +45,7 @@ abstract class Failures{
     }
   }
   factory ServerFaliure.fromResponse(int statusCode, dynamic resposne) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403||statusCode == 409 ||statusCode == 422) {
+    if (statusCode == 400 || statusCode == 401 || statusCode == 403||statusCode == 409 ||statusCode == 422 ||statusCode==503) {
       try {
       return ServerFaliure(errorMessage: resposne['message']);        
       } catch (e) {
@@ -57,7 +57,14 @@ abstract class Failures{
     } else if (statusCode == 500) {
       return ServerFaliure(
           errorMessage: "internal Server Error, please try again later !");
-    } else {
+    } 
+    else if  (statusCode == 503) {
+    return ServerFaliure(errorMessage: "Server is out of service. Please try again later.");
+  } 
+    
+    
+    
+    else {
       print(statusCode);
       return ServerFaliure(
           errorMessage: "Oops there was an error, please try again later !");

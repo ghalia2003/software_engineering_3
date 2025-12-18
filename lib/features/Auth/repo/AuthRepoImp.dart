@@ -80,24 +80,10 @@ return left(ServerFaliure(errorMessage: e.toString()));
     }
   }
 
-  @override
-  Future<Either<Failures, Map<String, dynamic>>> fetchdataresendotp({
-    required String Email,
-  }) async {
-    try {
-      final data = await ApiService.post(
-        endPoint: 'resend-otp',
-        data: {'Email': Email},
-      );
 
-      return right(data);
-    } on DioException catch (e) {
-      return left(ServerFaliure.fromDioException(e));
-    } catch (e) {
-  return left(ServerFaliure(errorMessage: e.toString()));
 
-    }
-  }
+
+
 
   @override
   Future<Either<Failures, Map<String, dynamic>>> fetchdatalogin({
@@ -105,33 +91,39 @@ return left(ServerFaliure(errorMessage: e.toString()));
     required String Email,
   }) async {
     try {
-      final data = await ApiService.post(
-        endPoint: 'login',
-        data: {'Email': Email, 'password': password},
+            final formData = FormData.fromMap({
+'Password': password, 
+'Email': Email
+});
+    
+      final res = await ApiService.post(
+        endPoint: 'Auth/login',
+        data:formData,
       );
+  print('📥 Server response: $res');
+    if (res['success'] == true) {
+      final data = Map<String, dynamic>.from(res['data'] ?? {});
 
       final sp = await SharedPreferences.getInstance();
       final token = data['token'];
+      final role = data['role'];
 
-      // await NotificationService().initConnection(token);
-      final user = data['user'];
+      if (token != null) await sp.setString('token', token.toString());
+      if (role != null) await sp.setString('role', role.toString());
 
-      if (token != null) {
-        await sp.setString('token', token);
-
-
-      }
-
-      if (user != null) {
-        await sp.setString('role', user['role']);
-      }
-
-      return right(data);
-    } on DioException catch (e) {
-      return left(ServerFaliure.fromDioException(e));
-    } catch (e) {
-return left(ServerFaliure(errorMessage: e.toString()));
-
+      return right(data); 
+    } 
+    else {
+      return left(ServerFaliure(
+        errorMessage: res['error']?.toString() ?? 'حدث خطأ',
+      ));
     }
+  } on DioException catch (e) {
+    print("⚠️ status=${e.response?.statusCode}, dataType=${e.response?.data.runtimeType}, data=${e.response?.data}");
+
+    return left(ServerFaliure.fromDioException(e));
+  } catch (e) {
+    return left(ServerFaliure(errorMessage: e.toString()));
   }
+}
 }

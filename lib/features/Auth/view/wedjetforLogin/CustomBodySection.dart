@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_12/core/Validation.dart';
 import 'package:flutter_application_12/core/utils/app_router.dart';
 import 'package:flutter_application_12/core/utils/colors_theme.dart';
 import 'package:flutter_application_12/core/utils/style.dart';
@@ -48,7 +49,7 @@ class _bodysectionState extends State<bodysection> {
 
             AppTextField(
               controller: emailController,
-              // validator: validateEmail,
+               validator: validateEmail,
               hint: 'Email',
               background: Colors.white,
               keyboardType: TextInputType.emailAddress,
@@ -63,7 +64,7 @@ class _bodysectionState extends State<bodysection> {
             AppTextField(
               hint: 'Password' ,
               controller: passwordController,
-              // validator: validatePassword,
+               validator: validatePassword,
               background: Colors.white,
               obscure: !_passwordVisible,
               prefix: const Icon(
@@ -85,40 +86,18 @@ class _bodysectionState extends State<bodysection> {
             BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) async {
                 if (state is loginFailure) {
-                  final msg = state.errMessage;
-
-                  // حالة الإيميل غير مفعّل
-                  if (msg.contains('Email not verified')) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'البريد غير مفعّل، يرجى إدخال رمز التحقق',
-                        ),
-                      ),
-                    );
-
-                    // ننتقل لشاشة OTP ونرسل معها الإيميل
-                    // context.go(
-                    //   // AppRouter.kOTPView, // مسار شاشة OTP
-                    //   extra: emailController.text.trim(),
-                    // );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.errMessage),
-                        backgroundColor: Colors.grey,
-                      ),
-                    );
-    
-                  }
+              
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text(state.errMessage)));
                 }
 
                 if (state is loginSuccess) {
                   ScaffoldMessenger.of(
                     context,
-                  ).showSnackBar(SnackBar(content: Text(state.message)));
+                  ).showSnackBar(SnackBar(content: Text('Success Login')));
                   print('hiiiiiiii');
-                  // GoRouter.of(context).push(AppRouter.homePage);
+                   GoRouter.of(context).push(AppRouter.CreateTicketpage);
                 }
               },
                builder: (context, state) {

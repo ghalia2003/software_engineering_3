@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Static {
-  static String ipconfig = "192.168.1.7:44360";
+  static String ipconfig = "192.168.1.7:7149";
   static String abhayaLibrefont = "AbhayaLibre";
   static String afacadfont = "Afacad";
   static String arialRoundedMTfont = "ArialRoundedMT";

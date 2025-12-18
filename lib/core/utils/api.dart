@@ -15,7 +15,7 @@ class ApiService {
             connectTimeout: const Duration(seconds: 30),
             receiveTimeout: const Duration(seconds: 30),
             sendTimeout: const Duration(seconds: 30),
-            contentType: 'application/json',
+        
       
           ),
         )
@@ -34,7 +34,7 @@ class ApiService {
 
     return {
       'Authorization': 'Bearer $token',
-      'Content-Type': 'application/json',
+   
     };
   }
 

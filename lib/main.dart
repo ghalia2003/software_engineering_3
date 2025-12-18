@@ -28,9 +28,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => OtpCubit(getIt.get<AuthRepoImpl>())),
 
-        // BlocProvider(
-        //   create: (context) => ResendotpCubit(getIt.get<AuthRepoImpl>()),
-        // ),
+     
         BlocProvider(
           create: (context) => LoginCubit(getIt.get<AuthRepoImpl>()),
         ),
@@ -39,6 +37,18 @@ class MyApp extends StatelessWidget {
     MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
+
+
+       theme: ThemeData(
+          scaffoldBackgroundColor: const Color(0xFFF5F5F5),
+
+      
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0xFFF5F5F5),
+            elevation: 0,
+            centerTitle: false,
+          ),),
+
     ));
   }
 }

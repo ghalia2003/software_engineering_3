@@ -14,9 +14,7 @@ abstract class AuthRepo {
     required String Email,
   });
 
-  Future<Either<Failures, Map<String, dynamic>>> fetchdataresendotp({
-    required String Email,
-  });
+
 
   Future<Either<Failures, Map<String, dynamic>>> fetchdatalogin({
     required dynamic password,
