@@ -26,7 +26,7 @@ class CreateTicketCubit extends Cubit<CreateTicketState> {
        emit(CreateTicketFailure(failure.errorMessage));},
       (data) {
            print('✅ Success: $data');
-        // في صورتك: {"message":"تم إنشاء تذكرة الدعم بنجاح"}
+     
         final msg = (data['message'] ?? 'تم إرسال التذكرة بنجاح').toString();
         emit(CreateTicketSuccess(msg));
       },

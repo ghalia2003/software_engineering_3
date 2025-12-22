@@ -6,7 +6,7 @@ import 'package:flutter_application_12/features/ticket/repo/repo_ticker.dart';
 import 'package:flutter_application_12/features/ticket/strategy/ticket_submit_strategy.dart.dart';
 
 //Context
-//(الكلاس اللي يستخدم الاستراتيجية)
+
 class SupportTicketRepoImpl implements SupportTicketRepo {
   final TicketSubmitStrategy strategy;
 

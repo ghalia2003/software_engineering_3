@@ -35,10 +35,10 @@ class _CreateTicketScreenState extends State<CreateTicketScreen> {
            
                                  CustomAppBar(
               bottomPadding:0,
-                     onTap: () {
-                context.go(AppRouter.Loginpage);
-              },
-                                 ),
+
+                onTap: () {
+  context.pushReplacement(AppRouter.AcountPage);
+},                 ),
                title:const  Text('Support Ticket',
                 style: Styles.headingLarge),
           
