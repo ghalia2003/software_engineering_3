@@ -9,7 +9,7 @@ import 'transfer_state.dart';
 class TransferCubit extends Cubit<TransferState> {
   final TransferRepo repo;
 
-  // ✅ Chain
+
   late final AmountPositiveHandler _chainStart;
 
   TransferCubit(this.repo) : super(TransferInitial()) {
@@ -24,7 +24,7 @@ class TransferCubit extends Cubit<TransferState> {
     required double amount,
     required double? fromBalance,
   }) async {
-    // ✅ validate by chain
+
     final req = TransferRequest(
       fromAccountNumber: fromAccountNumber,
       toAccountNumber: toAccountNumber,

@@ -36,7 +36,7 @@ class NotificationService {
 
     _hubConnection = HubConnectionBuilder()
         .withUrl(
-          'http://192.168.1.7:7149/notificationHub',
+          'http://172.20.10.6:7149/notificationHub',
           HttpConnectionOptions(accessTokenFactory: () async => token),
         )
         .withAutomaticReconnect()

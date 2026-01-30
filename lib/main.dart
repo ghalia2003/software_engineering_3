@@ -27,9 +27,7 @@ void main() async {
 
   final notificationService = NotificationService();
   notificationService.subscribe(LocalNotificationObserver());
-  // لاحقًا ممكن تضيف:
-  // notificationService.subscribe(LoggerObserver());
-  // notificationService.subscribe(BadgeObserver());
+
 
   if (token != null && token.isNotEmpty) {
     await notificationService.startConnection(token);

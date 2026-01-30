@@ -27,6 +27,10 @@ getIt.registerSingleton<AuthRepoImpl>(AuthRepoImpl());
 getIt.registerSingleton<RecommendationsRepo>(RecommendationsRepoImpl());
 
   getIt.registerSingleton<LocalNotificationService>(LocalNotificationService());
+  getIt.registerLazySingleton<TransferRepo>(
+  () => TransferRepoImpl(),
+);
+
   // getIt.registerLazySingleton<TransferRepo>(() => TransferRepoImpl());
   // getIt.registerSingleton<NotificationService>(NotificationService());
 }

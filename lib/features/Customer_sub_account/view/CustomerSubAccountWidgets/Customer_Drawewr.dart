@@ -34,6 +34,14 @@ class CustomDrawer extends StatelessWidget {
            context.go(AppRouter.recomindationPage);
                 },
               ),
+              ListTile(
+              leading: const Icon(Icons.auto_awesome),
+              title: const Text('Loan'),
+              onTap: () {
+                Navigator.pop(context);
+                context.go(AppRouter.loanPage);
+              },
+            ),
             ],
           ),
         ),

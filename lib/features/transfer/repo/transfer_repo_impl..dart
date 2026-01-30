@@ -27,7 +27,7 @@ class TransferRepoImpl implements TransferRepo {
 
       if (res['success'] == true) {
         final data = res['data'];
-        // لو الباك يرجع {"message": "..."}
+
         if (data is Map<String, dynamic>) return right(data);
         return right({'message': 'تم التحويل بنجاح'});
       } else {

@@ -4,7 +4,7 @@ import 'package:flutter_application_12/features/transfer/model/transfermodel.dar
 
 abstract class TransferHandler {
   TransferHandler setNext(TransferHandler handler);
-  String? handle(TransferRequest req); // يرجع error message أو null إذا OK
+  String? handle(TransferRequest req); 
 }
 
 abstract class BaseTransferHandler implements TransferHandler {
